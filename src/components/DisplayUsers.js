@@ -5,9 +5,6 @@ import { useState } from "react";
 
 
 const DisplayUsers = () => {
-    const [username, setUsername] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
 
     const submitHandler = async (event) => {
         event.preventDefault()
