@@ -3,14 +3,14 @@ import "./App.css"
 import SearchIcon from "./search.svg"
 import MovieCard from "./components/MovieCard";
 
-//7d2e5ef7
+import Login from './components/Login'
 
 const API_URL = 'http://omdbapi.com?apikey=7d2e5ef7'
 
 const App = () => {
-
   const [searchTerm, setSearchTerm] = useState("")
   const [movies, setMovies] = useState([])
+  const [user, setUser]= useState()
 
   useEffect (() =>{
     searchFilms('Batman')
@@ -19,13 +19,16 @@ const App = () => {
   const searchFilms = async (title) => {
     const req = await fetch(`${API_URL}&s=${title}`)
     const res = await req.json()
-    // console.log(res.Search)
     setMovies(res.Search)
   }
 
   return (
     <div className="app">
-      <h1>My movie app</h1>
+      <Login setter={setUser} />
+      {user ? <h1>{user} logged in </h1> : <h1>user not logged in</h1>}
+
+      <br></br>
+      <h1>My movie app</h1> 
       <div className="search">
         <input
             placeholder='Search for a film'
