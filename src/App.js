@@ -29,7 +29,7 @@ const App = () => {
 
 
       <br></br>
-      {/* TODO: Call displayUsers componet here */}
+      {/* TODO: Call DisplayUsers componet here */}
       <h1>My movie app</h1> 
       <div className="search">
         <input
