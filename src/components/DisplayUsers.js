@@ -18,4 +18,4 @@ const DisplayUsers = () => {
     )
 }
 
-export default Login
+export default DisplayUsers
