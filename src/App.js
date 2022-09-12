@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css"
 import SearchIcon from "./search.svg"
 import MovieCard from "./components/MovieCard";
-
+//TODO import DisplayUsers componet here
 import Login from './components/Login'
 
 const API_URL = 'http://omdbapi.com?apikey=7d2e5ef7'
@@ -27,7 +27,9 @@ const App = () => {
       <Login setter={setUser} />
       {user ? <h1>{user} logged in </h1> : <h1>user not logged in</h1>}
 
+
       <br></br>
+      {/* TODO: Call displayUsers componet here */}
       <h1>My movie app</h1> 
       <div className="search">
         <input
