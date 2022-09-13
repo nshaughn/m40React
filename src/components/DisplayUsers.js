@@ -1,24 +1,39 @@
 import React from 'react' 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //TODO: IMPORT DISPLAY USERS BELOW
-
+import { displayUsers } from '../utils';
 
 const DisplayUsers = () => {
-    const [username, setUsername] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
 
-    const submitHandler = async (event) => {
-        event.preventDefault()
-        //TODO: CALL DISPLAY USERS FUNCTION
+    const [usernames, setUsernames] = useState()
+
+    const loadUsernames = async () => {
+        let users = await displayUsers()
+        console.log(users)
+        setUsernames(users)
     }
 
+    useEffect (() =>{
+        loadUsernames()
+    },[])
     return (
-        <form onSubmit ={submitHandler}>
-            <button type='submit'>Click here to display all the users</button>
-        </form>
+        <div className='usernames'>
+            { usernames?.length > 0
+                ?(
+                    <div className="container">
+                    {usernames.map((user) => (
+                        <h1>{user}</h1>
+                    ))}
+                    </div>
+                ) : (
+                    <div className="empty">
+                    <h2>No users found</h2>
+                    </div>
+                )
+            }
+        </div>
     )
 }
 
-export default Login
+export default DisplayUsers

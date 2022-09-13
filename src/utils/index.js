@@ -17,4 +17,19 @@ export const login = async (username, email, password, setter) => {
         console.log(error)
     }
 }
-//TODO: ADD FUNCTION TO LOG THE LIST OF USERS IN THE DATABSE
+//TODO: ADD FUNCTION TO LOG THE LIST OF USERS IN THE DATABSE 
+
+export const displayUsers = async (setter) => {
+    try {
+        const response = await fetch("http://localhost:5001/displayUsers", {
+            method: "GET",
+            headers: {"Content-Type": "application/json"}
+        });
+        const data = await response.json()
+        const usernames = data.users.map(users => users.username)
+        console.log(usernames)
+        return usernames
+    } catch (error)  {
+        console.log(error)
+    }
+}
