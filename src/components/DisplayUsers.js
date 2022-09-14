@@ -23,7 +23,7 @@ const DisplayUsers = () => {
                 ?(
                     <div className="container">
                     {usernames.map((user) => (
-                        <h1>{user}</h1>
+                        <h3>{user}</h3>
                     ))}
                     </div>
                 ) : (

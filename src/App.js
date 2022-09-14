@@ -3,11 +3,11 @@ import "./App.css"
 import SearchIcon from "./search.svg"
 import MovieCard from "./components/MovieCard";
 //TODO import DisplayUsers componet here
-import DisplayUsers, { displayUsers} from "./components/DisplayUsers"
+import DisplayUsers from "./components/DisplayUsers"
 import Login from './components/Login'
 
-
-const API_URL = 'http://omdbapi.com?apikey=7d2e5ef7'
+// Prefix your env variables with REACT_APP_
+const API_URL = process.env.REACT_APP_API_URL
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -26,20 +26,14 @@ const App = () => {
 
   return (
     <div className="app">
-
+      <h1>Movie Database</h1>
+      <br></br>
+      <br></br>
       <Login setter={setUser} />
       {user ? 
       <>
-      <h1>{user} logged in </h1>
       {/* TODO: Call DisplayUsers componet here */}
       <DisplayUsers />
-      </>
-      : <h1>user not logged in</h1>}
-
-      <br></br>
-      
-
-      <h1>My movie app</h1> 
       <div className="search">
         <input
             placeholder='Search for a film'
@@ -67,6 +61,9 @@ const App = () => {
           </div>
         )
       }
+      </>
+      : <h2>Login to search for a movie</h2>}
+      <br></br>
     </div>
   )
 }
