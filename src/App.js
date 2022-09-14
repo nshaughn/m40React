@@ -7,7 +7,7 @@ import DisplayUsers from "./components/DisplayUsers"
 import Login from './components/Login'
 
 // Prefix your env variables with REACT_APP_
-const API_URL = process.env.REACT_APP_API_URL
+const API_URL = 'http://omdbapi.com?apikey=7d2e5ef7'
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -26,7 +26,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Movie Database</h1>
+      <h1>My Movie Database</h1>
       <br></br>
       <br></br>
       <Login setter={setUser} />
@@ -62,6 +62,7 @@ const App = () => {
         )
       }
       </>
+
       : <h2>Login to search for a movie</h2>}
       <br></br>
     </div>

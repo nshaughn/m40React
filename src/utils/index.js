@@ -1,6 +1,6 @@
 export const login = async (username, email, password, setter) => {
     try {
-        const response = await fetch(`${process.env.REACT_APP_REST_API}login`, {
+        const response = await fetch("http://localhost:5001/login", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
@@ -21,7 +21,7 @@ export const login = async (username, email, password, setter) => {
 
 export const displayUsers = async (setter) => {
     try {
-        const response = await fetch(`${process.env.REACT_APP_REST_API}displayUsers`, {
+        const response = await fetch("http://localhost:5001/displayUsers", {
             method: "GET",
             headers: {"Content-Type": "application/json"}
         });
