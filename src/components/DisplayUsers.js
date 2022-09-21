@@ -3,14 +3,15 @@ import { useState, useEffect } from "react";
 
 //TODO: IMPORT DISPLAY USERS BELOW
 import { displayUsers } from '../utils';
+import { getCookie } from '../common';
 
 const DisplayUsers = () => {
 
     const [usernames, setUsernames] = useState()
 
     const loadUsernames = async () => {
-        let users = await displayUsers()
-        console.log(users)
+        let cookies = getCookie('jwt_token')
+        let users = await displayUsers(cookies)
         setUsernames(users)
     }
 

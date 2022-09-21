@@ -21,13 +21,17 @@ export const login = async (username, email, password, setter) => {
     }
 }
 //TODO: ADD FUNCTION TO LOG THE LIST OF USERS IN THE DATABSE 
-export const displayUsers = async (setter) => {
+export const displayUsers = async (cookie) => {
     try {
         const response = await fetch(`${process.env.REACT_APP_REST_API}displayUsers`, {
             method: "GET",
-            headers: {"Content-Type": "application/json"}
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${cookie}` 
+            }
         });
         const data = await response.json()
+        console.log(data)
         const usernames = data.users.map(users => users.username)
         console.log(usernames)
         return usernames
@@ -46,6 +50,7 @@ export const findUser = async (cookie) => {
             }
         });
         const data = await response.json()
+        console.log(data)
         return data.username
     } catch (error) {
         console.log(error)
