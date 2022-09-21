@@ -6,6 +6,9 @@ import MovieCard from "./components/MovieCard";
 import DisplayUsers from "./components/DisplayUsers"
 import Login from './components/Login'
 
+import { getCookie } from "./common";
+import { findUser } from "./utils";
+
 // // Prefix your env variables with REACT_APP_
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -16,12 +19,21 @@ const App = () => {
 
   useEffect (() =>{
     searchFilms('Batman')
+    let cookie = getCookie('jwt_token')
+    if (cookie !== false) {
+      loginWithToken(cookie)
+    }
   },[])
 
   const searchFilms = async (title) => {
     const req = await fetch(`${API_URL}&s=${title}`)
     const res = await req.json()
     setMovies(res.Search)
+  }
+
+  const loginWithToken = async (cookie) => {
+    const user = await findUser(cookie)
+    setUser(user)
   }
 
   return (

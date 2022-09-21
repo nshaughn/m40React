@@ -1,3 +1,6 @@
+import { writeCookie } from "../common";
+
+
 export const login = async (username, email, password, setter) => {
     try {
         const response = await fetch(`${process.env.REACT_APP_REST_API}login`, {
@@ -10,8 +13,8 @@ export const login = async (username, email, password, setter) => {
             })
         });
         const data = await response.json()
-        console.log(data)
         setter(data.username)
+        writeCookie('jwt_token', data.token, 7)
 
     } catch (error) {
         console.log(error)
@@ -29,6 +32,22 @@ export const displayUsers = async (setter) => {
         console.log(usernames)
         return usernames
     } catch (error)  {
+        console.log(error)
+    }
+}
+
+export const findUser = async (cookie) => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_REST_API}findUser`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${cookie}` 
+            }
+        });
+        const data = await response.json()
+        return data.username
+    } catch (error) {
         console.log(error)
     }
 }
