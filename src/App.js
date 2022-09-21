@@ -36,6 +36,11 @@ const App = () => {
     setUser(user)
   }
 
+  const logout = async () => {
+    let name = 'jwt_token'
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+
   return (
     <div className="app">
       <h1>My Movie Database</h1>
@@ -73,6 +78,9 @@ const App = () => {
           </div>
         )
       }
+        <form onSubmit ={logout}>
+            <button type='submit'>Click here to logout</button>
+        </form>
       </>
 
       : <h2>Login to search for a movie</h2>}
