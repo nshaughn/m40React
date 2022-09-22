@@ -1,14 +1,14 @@
-export const getCookie = (name) =>{
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    let output
-    if (parts.length === 2) {
-        output = parts.pop().split(';').shift();
-    } else {
-        output = false 
-    }
-    return output
-} 
+// export const getCookie = (name) =>{
+//     const value = `; ${document.cookie}`;
+//     const parts = value.split(`; ${name}=`);
+//     let output
+//     if (parts.length === 2) {
+//         output = parts.pop().split(';').shift();
+//     } else {
+//         output = false 
+//     }
+//     return output
+// } 
 
 export const writeCookie = (key, value, days) => {
     var date = new Date();
@@ -22,4 +22,20 @@ export const writeCookie = (key, value, days) => {
     let cookie = document.cookie = key + "=" + value + "; expires=" + date.toGMTString() + "; path=/";
 
     return cookie
-}
+} 
+
+export const getCookie = (cname) => {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return false;
+  }
