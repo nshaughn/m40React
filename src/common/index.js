@@ -1,14 +1,3 @@
-// export const getCookie = (name) =>{
-//     const value = `; ${document.cookie}`;
-//     const parts = value.split(`; ${name}=`);
-//     let output
-//     if (parts.length === 2) {
-//         output = parts.pop().split(';').shift();
-//     } else {
-//         output = false 
-//     }
-//     return output
-// } 
 
 export const writeCookie = (key, value, days) => {
     var date = new Date();
