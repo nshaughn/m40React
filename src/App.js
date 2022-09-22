@@ -6,6 +6,9 @@ import MovieCard from "./components/MovieCard";
 import DisplayUsers from "./components/DisplayUsers"
 import Login from './components/Login'
 
+import { getCookie } from "./common";
+import { findUser } from "./utils";
+
 // // Prefix your env variables with REACT_APP_
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -16,12 +19,26 @@ const App = () => {
 
   useEffect (() =>{
     searchFilms('Batman')
+    let cookie = getCookie('jwt_token')
+    if (cookie !== false) {
+      loginWithToken(cookie)
+    }
   },[])
 
   const searchFilms = async (title) => {
     const req = await fetch(`${API_URL}&s=${title}`)
     const res = await req.json()
     setMovies(res.Search)
+  }
+
+  const loginWithToken = async (cookie) => {
+    const user = await findUser(cookie)
+    setUser(user)
+  }
+
+  const logout = async () => {
+    let name = 'jwt_token'
+    document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   }
 
   return (
@@ -61,6 +78,9 @@ const App = () => {
           </div>
         )
       }
+        <form onSubmit ={logout}>
+            <button type='submit'>Click here to logout</button>
+        </form>
       </>
 
       : <h2>Login to search for a movie</h2>}
