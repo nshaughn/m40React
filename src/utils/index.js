@@ -56,3 +56,55 @@ export const findUser = async (cookie) => {
         console.log(error)
     }
 }
+
+export const addUser = async (username, email, password) => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_REST_API}signUp`, {
+            method: "POST",
+            headers: 
+            {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                "username" : username,
+                "email": email,
+                "password": password
+            })
+        });
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const userUpdate = async (token, username, email, password) => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_REST_API}updateUser`, {
+            method: "PUT",
+            headers: 
+            {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
+            body: JSON.stringify({
+                "username" : username,
+                "email": email,
+                "password": password
+            })
+        });
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteUser = async (token) => {
+    try {
+        const response = await fetch(`${process.env.REACT_APP_REST_API}user`, {
+            method: "DELETE",
+            headers: 
+            {"Content-Type": "application/json", "Authorization": `Bearer ${token}`}
+        });
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+        
+    }
+}

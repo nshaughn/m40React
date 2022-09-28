@@ -20,6 +20,7 @@ const DisplayUsers = () => {
     },[])
     return (
         <div className='usernames'>
+            <h1>
             { usernames?.length > 0
                 ?(
                     <div className="container">
@@ -33,6 +34,7 @@ const DisplayUsers = () => {
                     </div>
                 )
             }
+            </h1>
         </div>
     )
 }

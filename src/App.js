@@ -5,6 +5,9 @@ import MovieCard from "./components/MovieCard";
 //TODO import DisplayUsers componet here
 import DisplayUsers from "./components/DisplayUsers"
 import Login from './components/Login'
+import AddUser from "./components/AddUser";
+import DeleteUser from "./components/DeleteUser";
+import UpdateUser from "./components/UpdateUser";
 
 import { getCookie } from "./common";
 import { findUser } from "./utils";
@@ -46,11 +49,18 @@ const App = () => {
       <h1>My Movie Database</h1>
       <br></br>
       <br></br>
+      <AddUser />
       <Login setter={setUser} />
       {user ? 
       <>
       {/* TODO: Call DisplayUsers componet here */}
       <DisplayUsers />
+      <br></br>
+      <br></br>
+      <UpdateUser />
+      <br></br>
+      <DeleteUser />
+      <br></br>
       <div className="search">
         <input
             placeholder='Search for a film'
